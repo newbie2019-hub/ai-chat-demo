@@ -10,7 +10,7 @@ defineProps<{
 
 <template>
   <div
-    class="relative w-28 truncate cursor-pointer hover:bg-gray-100 bg-white transition-all ease-in-out duration-200 text-sm border rounded-full px-3 py-1"
+    class="relative w-28 truncate cursor-pointer hover:bg-gray-100 bg-white dark:bg-gray-900/50 dark:text-gray-200 transition-all ease-in-out duration-200 text-sm border rounded-full px-3 py-1"
     @click="emit('remove')"
   >
     {{ fileName }}
