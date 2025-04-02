@@ -99,6 +99,7 @@ const handleSubmit = async (data: userQuery) => {
             <div
               v-for="prompt in promptExamples"
               :key="prompt.prompt"
+              @click="() => handleSubmit({ file: [], query: prompt.prompt })"
               class="bg-gray-50 dark:bg-gray-900/40 hover:dark:bg-gray-800/30 p-5 rounded-md flex-1 hover:shadow-md transition-all duration-200 ease-in-out cursor-pointer"
             >
               <div class="flex gap-x-3">

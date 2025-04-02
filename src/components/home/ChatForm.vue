@@ -3,6 +3,7 @@ import { computed, ref } from 'vue'
 import { Button } from '../ui/button'
 import { Icon } from '@iconify/vue'
 import { DRAG_STATE } from '@/lib/utils'
+import FileChat from './FileChat.vue'
 
 const emit = defineEmits<{
   (e: 'submit', data: { query: string; file: File[] }): void
@@ -46,6 +47,10 @@ const handleFileDrop = (ev: DragEvent) => {
     })
   }
 }
+
+const removeFileAttachment = (index: number) => {
+  fileAttachments.value.splice(index, 1)
+}
 </script>
 
 <template>
@@ -58,6 +63,15 @@ const handleFileDrop = (ev: DragEvent) => {
     @dragleave="dragState = null"
     @drop="handleFileDrop"
   >
+    <div v-if="fileAttachments.length > 0" class="flex gap-x-2 items-center pb-3">
+      <p class="text-sm text-gray-500">File Attachments:</p>
+      <FileChat
+        v-for="(file, i) in fileAttachments"
+        :key="file.name"
+        :file-name="file.name"
+        @remove="() => removeFileAttachment(i)"
+      />
+    </div>
     <div class="flex gap-x-3">
       <span>✨</span>
       <textarea
